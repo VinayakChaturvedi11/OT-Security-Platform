@@ -10,7 +10,7 @@ import { simulateRouter } from './api/simulate';
 import { attachWs } from './api/ws';
 
 async function main() {
-  await ensureSchema();
+ // await ensureSchema();
 
   const app = express();
   app.use(cors());
