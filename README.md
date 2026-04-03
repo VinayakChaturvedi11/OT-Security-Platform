@@ -1,2 +1,30 @@
-# OT-Security-Platform
-Operational Technology Systems require real-time monitoring and alerting against attacks made by malicious adversaries. This platform sits on top at the Human-Machine Interaction level and aims to send prompt alerts regarding unusual changes in the sensor readings preventing the systems from critically harming the resource they are handling. 
+## RBAC Implementation
+
+### Overview
+Added Role-Based Access Control (RBAC) to secure critical OT simulation endpoints.
+
+### Protected Endpoints
+- POST /simulate/modbus-write-drum
+- POST /simulate/modbus-write-load
+
+### Roles
+- BOILER-HMI → Allowed for drum control
+- TCS-HMI → Allowed for turbine load
+- Others → Denied
+
+### Example Test
+
+ Allowed:
+{
+  "src_role": "BOILER-HMI"
+}
+
+ Denied:
+{
+  "src_role": "UNAUTHORIZED"
+}
+
+### Result
+- Authorized → 200 OK
+- Unauthorized → 403 Forbidden
+
